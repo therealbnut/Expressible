@@ -4,8 +4,10 @@
 ///  * No need to implement init(extendedGraphemeClusterLiteral:)
 ///  * No need to implement init(unicodeScalarLiteral:)
 
-extension ExpressibleByExtendedGraphemeClusterLiteral where Self: ExpressibleByStringLiteral {
-    public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
-        self.init(stringLiteral: value)
+extension ExpressibleByStringLiteral
+    where Self.StringLiteralType == String
+{
+    public init(extendedGraphemeClusterLiteral value: Character) {
+        self.init(stringLiteral: String(describing: value))
     }
 }
